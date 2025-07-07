@@ -1,0 +1,44 @@
+Analisis Sistem DMC UNIDA Gontor (Versi Simpel)
+1. Apa Saja yang Ada di DMC? (Input)
+Ini tentang sumber daya yang dimiliki DMC:
+
+Orang: Ada dokter dan perawat. Mereka yang akan memeriksa dan merawat pasien. Jumlahnya cukup atau kurang, itu yang perlu kita lihat.
+
+Obat dan Alat: Ada obat-obatan dasar untuk penyakit umum (flu, batuk, demam) dan alat-alat P3K (tensimeter, termometer). Penting untuk memastikan stoknya selalu ada dan tidak kadaluarsa.
+
+Tempat: Ada ruangan untuk pemeriksaan, mungkin ada tempat tidur untuk istirahat sementara, dan ruang tunggu. Lokasinya strategis, mudah dijangkau di dalam kampus.
+
+Uang: Dari mana dana operasional DMC berasal? Biasanya dari universitas, untuk gaji, beli obat, dan perawatan alat.
+
+2. Bagaimana DMC Berjalan? (Proses)
+Ini tentang alur pelayanan di DMC:
+
+Datang & Daftar: Pasien datang, daftar, lalu dicatat.
+
+Periksa & Obati: Dokter atau perawat akan memeriksa, menentukan penyakitnya, lalu memberikan obat atau tindakan yang diperlukan.
+
+Catat Rekam Medis: Semua riwayat penyakit dan pengobatan pasien dicatat, bisa di buku atau komputer. Ini penting agar tahu riwayat kesehatan pasien.
+
+Rujuk (Kalau Perlu): Jika penyakitnya serius dan tidak bisa ditangani di DMC, pasien akan dirujuk ke rumah sakit terdekat (misalnya RSUD dr. Soedono di Madiun atau rumah sakit di Ponorogo).
+
+Edukasi Kesehatan: Mungkin ada juga program penyuluhan atau info-info kesehatan yang disebarkan.
+
+3. Apa Hasil dari DMC? (Output)
+Ini tentang dampak atau manfaat yang diberikan DMC:
+
+Civitas Akademika Sehat: Tujuan utamanya tentu agar mahasiswa, dosen, dan staf tetap sehat dan bisa beraktivitas dengan baik.
+
+Pelayanan Cepat & Tepat: Pasien merasa cepat ditangani dan puas dengan pelayanannya.
+
+Data Kesehatan: Ada catatan tentang jenis penyakit yang sering diderita, berapa banyak pasien, dll. Ini bisa jadi masukan untuk program kesehatan ke depan.
+
+4. Apa Saja Tantangan DMC?
+Setiap sistem pasti punya tantangan:
+
+Dana Terbatas: Mungkin anggaran dari universitas tidak selalu cukup untuk memenuhi semua kebutuhan (obat mahal, alat baru).
+
+Antrean Panjang: Kalau pasien banyak, tenaga medisnya sedikit, bisa jadi antrean panjang dan pelayanan jadi lambat.
+
+Obat/Alat Kurang Lengkap: DMC mungkin tidak bisa menyediakan semua jenis obat atau alat yang canggih, karena keterbatasan sumber daya.
+
+Jarak ke RS: Walaupun di Ponorogo ada beberapa rumah sakit, kalau ada kasus darurat, perlu waktu untuk merujuk.
