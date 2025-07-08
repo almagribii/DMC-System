@@ -1,0 +1,181 @@
+Mohon maaf atas kesalahpahaman saya! Terima kasih sudah mengingatkan. Karena ini untuk pelajaran OOP (Object-Oriented Programming) menggunakan Java dan fokusnya pada sistem saja (bukan website), kita akan merancang strukturnya dalam bentuk objek-objek.
+
+Ini akan jauh lebih sederhana dan fokus pada bagaimana data dan perilaku diatur dalam program Java Anda.
+
+Rancangan Sistem DMC (Object-Oriented Programming - Java)
+Fokus utama kita adalah mendefinisikan objek-objek (kelas) apa saja yang akan ada dalam sistem DMC ini, beserta atribut (data) dan metode (fungsi/perilaku) yang dimilikinya. Ini adalah inti dari OOP.
+
+1. Objek-Objek Utama dalam Sistem
+Kita akan mengidentifikasi entitas-entitas utama yang perlu dimodelkan sebagai kelas dalam Java:
+
+Pasien
+
+PetugasMedis (bisa dipecah lagi jadi Dokter dan Perawat kalau mau lebih detail)
+
+Kunjungan (representasi dari satu kali berobat pasien)
+
+Obat
+
+DMCSystem (kelas utama yang mengelola semua objek lainnya)
+
+2. Desain Kelas dan Atribut (Data)
+Berikut adalah struktur dasar setiap kelas beserta atribut yang akan dimilikinya:
+
+Pasien Class
+Ini akan menyimpan informasi tentang setiap pasien.
+
+Atribut:
+
+String nimNip: Nomor Induk Mahasiswa/Pegawai (ID unik).
+
+String namaLengkap: Nama pasien.
+
+String tanggalLahir: Tanggal lahir pasien (bisa pakai LocalDate di Java).
+
+String alamat: Alamat pasien.
+
+String nomorTelepon: Nomor telepon pasien.
+
+String riwayatAlergi: Riwayat alergi obat atau lainnya.
+
+List<Kunjungan> riwayatKunjungan: Daftar semua kunjungan pasien.
+
+PetugasMedis Class
+Mewakili dokter atau perawat yang bertugas.
+
+Atribut:
+
+String idPetugas: ID unik petugas.
+
+String nama: Nama petugas.
+
+String spesialisasi: Misal "Dokter Umum", "Perawat", dll.
+
+Kunjungan Class
+Setiap kali pasien berobat, itu akan direpresentasikan sebagai objek Kunjungan.
+
+Atribut:
+
+String idKunjungan: ID unik untuk setiap kunjungan.
+
+Pasien pasien: Objek Pasien yang melakukan kunjungan.
+
+PetugasMedis petugas: Objek PetugasMedis yang menangani.
+
+String tanggalKunjungan: Tanggal dan waktu kunjungan (bisa pakai LocalDateTime).
+
+String keluhanUtama: Apa yang dikeluhkan pasien.
+
+String diagnosis: Hasil diagnosis dari petugas medis.
+
+String tindakan: Tindakan yang diberikan (misalnya, "Pemberian Salep", "Suntik", dll.).
+
+List<Obat> resepObat: Daftar obat yang diresepkan untuk kunjungan ini.
+
+Obat Class
+Informasi tentang obat-obatan yang tersedia di DMC.
+
+Atribut:
+
+String kodeObat: Kode unik obat.
+
+String namaObat: Nama obat.
+
+String dosis: Dosis obat (misal "500 mg").
+
+int stok: Jumlah stok obat yang tersedia.
+
+String tanggalKadaluarsa: Tanggal kadaluarsa obat (bisa pakai LocalDate).
+
+DMCSystem Class
+Ini adalah kelas utama yang akan mengkoordinasikan semua operasi, ibaratnya "otak" dari sistem Anda.
+
+Atribut:
+
+List<Pasien> daftarPasien: Kumpulan semua objek Pasien.
+
+List<PetugasMedis> daftarPetugas: Kumpulan semua objek PetugasMedis.
+
+List<Obat> daftarObat: Kumpulan semua objek Obat.
+
+List<Kunjungan> daftarKunjungan: Kumpulan semua objek Kunjungan yang pernah terjadi.
+
+3. Metode (Fungsi/Perilaku) Utama
+Setiap kelas akan memiliki metode (fungsi) yang mendefinisikan apa yang bisa mereka lakukan atau bagaimana mereka bisa berinteraksi.
+
+Pasien Class
+void tambahKunjungan(Kunjungan kunjunganBaru): Menambahkan kunjungan baru ke riwayat pasien.
+
+void tampilkanRiwayatKunjungan(): Menampilkan semua riwayat kunjungan pasien.
+
+PetugasMedis Class
+void catatDiagnosis(Kunjungan kunjungan, String diagnosis): Mencatat diagnosis untuk kunjungan.
+
+void berikanResep(Kunjungan kunjungan, Obat obat, int jumlah): Menambahkan obat ke resep kunjungan.
+
+Kunjungan Class
+void tambahObatResep(Obat obat, int jumlah): Menambahkan obat ke dalam resep kunjungan ini.
+
+void cetakRingkasanKunjungan(): Menampilkan detail ringkasan kunjungan.
+
+Obat Class
+void kurangiStok(int jumlah): Mengurangi jumlah stok obat.
+
+void tambahStok(int jumlah): Menambah jumlah stok obat.
+
+boolean isKadaluarsa(): Mengecek apakah obat sudah kadaluarsa.
+
+DMCSystem Class
+Ini adalah tempat sebagian besar logika bisnis akan berada.
+
+void daftarPasienBaru(String nimNip, String nama, ...): Membuat objek Pasien baru dan menambahkannya ke daftarPasien.
+
+Pasien cariPasien(String nimNip): Mencari objek Pasien berdasarkan NIM/NIP.
+
+void tambahPetugas(String id, String nama, String spesialisasi): Menambahkan petugas medis baru.
+
+PetugasMedis cariPetugas(String idPetugas): Mencari objek PetugasMedis.
+
+void tambahObat(String kode, String nama, String dosis, int stok, String kadaluarsa): Menambahkan obat baru.
+
+Obat cariObat(String kodeObat): Mencari objek Obat.
+
+void buatKunjunganBaru(String nimNipPasien, String idPetugas, String keluhan): Memulai proses kunjungan baru, menghubungkan pasien dan petugas.
+
+void prosesResepObat(String idKunjungan, String kodeObat, int jumlah): Memproses resep, mengurangi stok obat.
+
+void tampilkanLaporanStokObat(): Menampilkan laporan stok obat.
+
+void tampilkanLaporanKunjunganHarian(): Menampilkan laporan kunjungan untuk hari ini.
+
+4. Konsep OOP yang Terlibat
+Dalam perancangan ini, Anda akan menerapkan beberapa konsep dasar OOP:
+
+Encapsulation: Menggabungkan data (atribut) dan metode (perilaku) dalam satu unit (kelas), serta menyembunyikan detail implementasi dari luar. (Contoh: Atribut dibuat private dan diakses melalui getter dan setter).
+
+Abstraction: Menyediakan antarmuka yang disederhanakan untuk interaksi dengan objek, menyembunyikan kompleksitas internal. (Contoh: Anda hanya perlu memanggil dmcSystem.buatKunjunganBaru() tanpa perlu tahu detail internal bagaimana pasien dicari, dll.).
+
+Inheritance (Pewarisan) - Potensial: Anda bisa memiliki kelas PetugasMedis sebagai kelas induk, lalu Dokter dan Perawat sebagai kelas anak yang mewarisi sifat-sifat umum dari PetugasMedis dan menambahkan sifat spesifik mereka. Ini bisa dilakukan jika ingin lebih detail.
+
+Polymorphism (Polimorfisme) - Potensial: Jika Anda menerapkan inheritance, Anda bisa menggunakan polimorfisme, misalnya memiliki metode umum di PetugasMedis yang perilakunya bisa berbeda di Dokter dan Perawat.
+
+5. Alur Penggunaan Sistem (Dalam Konteks Program Java)
+Inisialisasi DMCSystem: Buat objek DMCSystem di fungsi main() Anda.
+
+Input Data Awal: Tambahkan beberapa Pasien, PetugasMedis, dan Obat awal ke DMCSystem untuk pengujian.
+
+Simulasi Proses: Panggil metode-metode dari objek DMCSystem untuk mensimulasikan alur kerja:
+
+dmcSystem.daftarPasienBaru(...)
+
+dmcSystem.buatKunjunganBaru(...)
+
+dmcSystem.prosesResepObat(...)
+
+dmcSystem.tampilkanLaporanStokObat()
+
+dll.
+
+Tampilkan Output: Gunakan System.out.println() untuk menampilkan hasil dari operasi yang dilakukan.
+
+Dengan perancangan ini, Anda memiliki kerangka kerja yang solid untuk mulai mengembangkan sistem DMC menggunakan Java dan menerapkan prinsip-prinsip OOP. Ini akan menjadi proyek yang bagus untuk memahami bagaimana objek saling berinteraksi!
