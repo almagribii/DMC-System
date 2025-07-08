@@ -1,44 +1,71 @@
-Analisis Sistem DMC UNIDA Gontor (Versi Simpel)
-1. Apa Saja yang Ada di DMC? (Input)
-Ini tentang sumber daya yang dimiliki DMC:
+Rancangan Sistem DMC Universitas Darussalam Gontor 
+Sistem DMC ini bertujuan untuk memudahkan pengelolaan data pasien dan pelayanan kesehatan dasar di lingkungan kampus. Intinya, kita ingin mempermudah alur kerja di DMC.
 
-Orang: Ada dokter dan perawat. Mereka yang akan memeriksa dan merawat pasien. Jumlahnya cukup atau kurang, itu yang perlu kita lihat.
+1. Tujuan Utama
+Pencatatan data pasien: Agar riwayat kesehatan mahasiswa, dosen, dan staf bisa tercatat rapi.
 
-Obat dan Alat: Ada obat-obatan dasar untuk penyakit umum (flu, batuk, demam) dan alat-alat P3K (tensimeter, termometer). Penting untuk memastikan stoknya selalu ada dan tidak kadaluarsa.
+Mempercepat pelayanan: Mengurangi waktu tunggu pasien dan antrean.
 
-Tempat: Ada ruangan untuk pemeriksaan, mungkin ada tempat tidur untuk istirahat sementara, dan ruang tunggu. Lokasinya strategis, mudah dijangkau di dalam kampus.
+Memudahkan pencarian data: Petugas bisa cepat menemukan rekam medis pasien.
 
-Uang: Dari mana dana operasional DMC berasal? Biasanya dari universitas, untuk gaji, beli obat, dan perawatan alat.
+2. Fitur Utama yang Penting
+Kita hanya akan fokus pada fitur-fitur esensial terlebih dahulu:
 
-2. Bagaimana DMC Berjalan? (Proses)
-Ini tentang alur pelayanan di DMC:
+Pendaftaran Pasien:
 
-Datang & Daftar: Pasien datang, daftar, lalu dicatat.
+Input data dasar pasien (NIM/NIP, nama lengkap, tanggal lahir).
 
-Periksa & Obati: Dokter atau perawat akan memeriksa, menentukan penyakitnya, lalu memberikan obat atau tindakan yang diperlukan.
+Pilihan pasien baru atau lama.
 
-Catat Rekam Medis: Semua riwayat penyakit dan pengobatan pasien dicatat, bisa di buku atau komputer. Ini penting agar tahu riwayat kesehatan pasien.
+Otomatis mencetak nomor antrean (opsional).
 
-Rujuk (Kalau Perlu): Jika penyakitnya serius dan tidak bisa ditangani di DMC, pasien akan dirujuk ke rumah sakit terdekat (misalnya RSUD dr. Soedono di Madiun atau rumah sakit di Ponorogo).
+Rekam Medis Elektronik (RME):
 
-Edukasi Kesehatan: Mungkin ada juga program penyuluhan atau info-info kesehatan yang disebarkan.
+Pencatatan keluhan: Apa yang dirasakan pasien saat datang.
 
-3. Apa Hasil dari DMC? (Output)
-Ini tentang dampak atau manfaat yang diberikan DMC:
+Diagnosis: Hasil pemeriksaan dokter/petugas medis.
 
-Civitas Akademika Sehat: Tujuan utamanya tentu agar mahasiswa, dosen, dan staf tetap sehat dan bisa beraktivitas dengan baik.
+Tindakan: Perawatan atau prosedur yang diberikan.
 
-Pelayanan Cepat & Tepat: Pasien merasa cepat ditangani dan puas dengan pelayanannya.
+Resep Obat: Obat yang diberikan, dosis, dan aturan pakai.
 
-Data Kesehatan: Ada catatan tentang jenis penyakit yang sering diderita, berapa banyak pasien, dll. Ini bisa jadi masukan untuk program kesehatan ke depan.
+Riwayat Kunjungan: Bisa melihat catatan kunjungan pasien sebelumnya. Ini penting agar dokter tahu riwayat penyakitnya.
 
-4. Apa Saja Tantangan DMC?
-Setiap sistem pasti punya tantangan:
+Manajemen Obat Sederhana:
 
-Dana Terbatas: Mungkin anggaran dari universitas tidak selalu cukup untuk memenuhi semua kebutuhan (obat mahal, alat baru).
+Input nama obat dan jumlah stok.
 
-Antrean Panjang: Kalau pasien banyak, tenaga medisnya sedikit, bisa jadi antrean panjang dan pelayanan jadi lambat.
+Pengurangan stok otomatis saat obat diresepkan.
 
-Obat/Alat Kurang Lengkap: DMC mungkin tidak bisa menyediakan semua jenis obat atau alat yang canggih, karena keterbatasan sumber daya.
+Notifikasi dasar jika stok obat hampir habis.
 
-Jarak ke RS: Walaupun di Ponorogo ada beberapa rumah sakit, kalau ada kasus darurat, perlu waktu untuk merujuk.
+3. Cara Kerja Sistem (Alur Sederhana)
+Pasien Datang: Pasien datang ke DMC.
+
+Pendaftaran: Petugas memasukkan data pasien ke sistem. Jika sudah pernah berobat, cukup cari namanya.
+
+Konsultasi/Pemeriksaan: Dokter/petugas medis membuka rekam medis pasien di sistem, mencatat keluhan, diagnosis, tindakan, dan resep obat.
+
+Pemberian Obat: Petugas farmasi (atau staf DMC) melihat resep di sistem, mengambil obat, dan stok obat otomatis berkurang di sistem.
+
+Data Tersimpan: Semua data kunjungan tersimpan rapi di dalam sistem.
+
+4. Teknologi yang Bisa Dipakai (Saran dari Mahasiswa TI)
+Karena ini versi sederhana, kita bisa pakai teknologi yang umum dan mudah dipelajari:
+
+Basis Data: MySQL (mudah digunakan dan banyak tutorialnya).
+
+Bahasa Pemrograman: PHP dengan framework seperti Laravel (populer dan cocok untuk aplikasi web sederhana). Untuk tampilan depan, bisa pakai HTML, CSS, dan sedikit JavaScript.
+
+Tampilan: Cukup aplikasi berbasis web saja. Bisa diakses dari komputer DMC.
+
+5. Keuntungan Sistem Ini
+Data rapi: Tidak ada lagi catatan kertas yang mudah hilang.
+
+Pelayanan cepat: Tidak perlu mencari-cari rekam medis manual.
+
+Informasi lengkap: Dokter bisa langsung tahu riwayat kesehatan pasien.
+
+Kontrol stok obat: Lebih mudah memantau ketersediaan obat.
+
+Rancangan ini fokus pada fungsi inti untuk membuat pekerjaan di DMC lebih mudah dan efisien. Jika ini sudah berjalan lancar, baru kita bisa memikirkan fitur-fitur tambahan lainnya di masa depan.
