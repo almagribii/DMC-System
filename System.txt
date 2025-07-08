@@ -55,9 +55,7 @@ Karena ini versi sederhana, kita bisa pakai teknologi yang umum dan mudah dipela
 
 Basis Data: MySQL (mudah digunakan dan banyak tutorialnya).
 
-Bahasa Pemrograman: PHP dengan framework seperti Laravel (populer dan cocok untuk aplikasi web sederhana). Untuk tampilan depan, bisa pakai HTML, CSS, dan sedikit JavaScript.
-
-Tampilan: Cukup aplikasi berbasis web saja. Bisa diakses dari komputer DMC.
+Bahasa Pemrograman: Java OOP
 
 5. Keuntungan Sistem Ini
 Data rapi: Tidak ada lagi catatan kertas yang mudah hilang.
