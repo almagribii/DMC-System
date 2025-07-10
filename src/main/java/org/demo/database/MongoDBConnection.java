@@ -2,6 +2,7 @@ package org.demo.database;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.*;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;
 
@@ -40,6 +41,30 @@ public class MongoDBConnection {
             FindIterable<Document> allDrug = collection.find();
             for (Document doc : allDrug) {
                 System.out.println(doc.toJson());
+            }
+
+//            // Update Data
+//            System.out.println("\n --- Memperbarui Dokumen ---");
+//            collection.updateOne(
+//                    new Document("namaObat", "Infinix"),
+//                    new Document("kekuatan", "200mg")
+//            );
+
+//            Delete Data
+            System.out.println("\n --- Menghapus Data ---");
+            DeleteResult deleteResult = collection.deleteOne(new Document("nama", "Brucad"));
+
+            if (deleteResult.getDeletedCount() > 0) {
+                System.out.println("Dokumen 'Paracetamol' berhasil dihapus");
+            } else {
+                System.out.println("Dokumen tidak ditemukan untuk dihapus");
+            }
+
+//            Update after Delete
+            System.out.println("\n --- Dokumen Tersisa setelah Penghapusan");
+            FindIterable<Document> remainingDrug = collection.find();
+            for (Document doc2 : remainingDrug) {
+                System.out.println(doc2);
             }
         } catch (MongoException e) {
             System.err.println("Terjadi Kesalahan MongoDb : " + e.getMessage());
