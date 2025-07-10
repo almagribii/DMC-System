@@ -1,19 +1,28 @@
 package org.demo.database;
 
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 public class MongoDBConnection {
     public static void main(String[] args) {
+        //Konfigurasi URL --> Connect to local Mongo     Different if you use Mongo from Atlas
         String connectionString = "mongodb://localhost:27017";
-
+        //Deklaration from outside try so that be acces in finally
         MongoClient mongoClient = null;
 
-//        try {
-//            mongoClient = MongoClients.create(connectionString);
-//            System.out.println("Apliksi Berhasil Terhubung ke MongoDb");
-//        }
+        try {
+            mongoClient = MongoClients.create(connectionString);
+            System.out.println("Apliksi Berhasil Terhubung ke MongoDb");
+
+            MongoDatabase database = mongoClient.getDatabase("DMC");
+            System.out.println("Mengakses Databases:" + database.getName());
+        } catch (MongoException e) {
+            System.err.println("Terjadi Kesalahan MongoDb : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
 
