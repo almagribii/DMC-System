@@ -1,10 +1,7 @@
 package org.demo.database;
 
 import com.mongodb.MongoException;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;
 
@@ -37,6 +34,13 @@ public class MongoDBConnection {
             InsertOneResult insertOneResult = collection.insertOne(obat1);
             System.out.println("Dokumen buku 1 berhasil ditambahkan dengan ID" + insertOneResult.getInsertedId());
 
+            // to read your Document
+            System.out.println("\n--- Dokumen Dalam Koleksi " + collection.getNamespace() + " ---");
+            // look all doc.
+            FindIterable<Document> allDrug = collection.find();
+            for (Document doc : allDrug) {
+                System.out.println(doc.toJson());
+            }
         } catch (MongoException e) {
             System.err.println("Terjadi Kesalahan MongoDb : " + e.getMessage());
             e.printStackTrace();
