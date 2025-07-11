@@ -12,7 +12,14 @@ public class Dokter {
     private boolean statusAktif;
 
     public Dokter () {}
-    public Dokter(ObjectId id, String nipPegawai, String namaLengkap, String spesialisasi, String nomorSIP, Kontak kontak, boolean statusAktif){
+    public Dokter(ObjectId id,
+                  String nipPegawai,
+                  String namaLengkap,
+                  String spesialisasi,
+                  String nomorSIP,
+                  Kontak kontak,
+                  boolean statusAktif
+    ){
         this.id = id;
         this.nipPegawai = nipPegawai;
         this.namaLengkap = namaLengkap;

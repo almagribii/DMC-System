@@ -12,4 +12,12 @@ public class Kontak {
         this.telepon = telepon;
         this.alamat = alamat;
     }
+    public String getEmail(){return email;}
+    public void setEmail(String email){this.email = email;}
+
+    public String getTelepon(){return telepon;}
+    public void  setTelepon(String telepon){this.telepon = telepon;}
+
+    public String getAlamat(){return alamat;}
+    public void setAlamat (String alamat){this.alamat = alamat;}
 }
