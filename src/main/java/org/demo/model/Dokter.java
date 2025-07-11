@@ -21,4 +21,25 @@ public class Dokter {
         this.kontak = kontak;
         this.statusAktif = statusAktif;
     }
+
+    public ObjectId getId () {return id;}
+    public void setId (ObjectId id) {this.id = id; }
+
+    public String getNipPegawai(){return nipPegawai;}
+    public void setNipPegawai(String nipPegawai){this.nipPegawai = nipPegawai;}
+
+    public String getNamaLengkap() {return namaLengkap;}
+    public void setNamaLengkap(String namaLengkap){this.namaLengkap = namaLengkap;}
+
+    public String getSpesialisasi(){return spesialisasi;}
+    public void setSpesialisasi(String spesialisasi){this.spesialisasi = spesialisasi;}
+
+    public String getNomorSIP(){return nomorSIP;}
+    public void setNomorSIP(String nipPegawai){this.nomorSIP = nomorSIP;}
+
+    public Kontak getKontak(){return kontak;}
+    public void setKontak(Kontak kontak){this.kontak = kontak;}
+
+    public boolean isStatusAktif(){return statusAktif;}
+    public void setStatusAktif(boolean statusAktif){this.statusAktif = statusAktif;}
 }
