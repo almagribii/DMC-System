@@ -19,5 +19,12 @@ public class ResepObat {
                      int jumlah,
                      String satuan,
                      String aturanPakai) {
+        this.idObat = idObat;
+        this.namaObat = namaObat;
+        this.kekuatan = kekuatan;
+        this.jumlah = jumlah;
+        this.satuan = satuan;
+        this.aturanPakai = aturanPakai;
     }
+
 }
