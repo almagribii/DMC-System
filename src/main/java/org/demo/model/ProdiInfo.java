@@ -12,5 +12,11 @@ public class ProdiInfo {
         this.idProdi = idProdi;
         this.namaProdi = namaProdi;
     }
+
+    public ObjectId getIdProdi(){return idProdi;}
+    public void setIdProdi(ObjectId idProdi){this.idProdi = idProdi;}
+
+    public String getNamaProdi(){return namaProdi;}
+    public void setNamaProdi(String namaProdi){this.namaProdi = namaProdi;}
 }
 
