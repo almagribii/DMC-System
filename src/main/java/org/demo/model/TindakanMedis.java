@@ -9,4 +9,10 @@ public class TindakanMedis {
         this.namaTindakan = namaTindakan;
         this.catatan = catatan;
     }
+
+    public String getNamaTindakan(){return namaTindakan;}
+    public void setNamaTindakan(String namaTindakan){this.namaTindakan = namaTindakan;}
+
+    public String getCatatan(){return catatan;}
+    public void setCatatan(String catatan){this.catatan = catatan;}
 }
