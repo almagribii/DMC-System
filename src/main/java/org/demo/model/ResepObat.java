@@ -26,5 +26,21 @@ public class ResepObat {
         this.satuan = satuan;
         this.aturanPakai = aturanPakai;
     }
+    public ObjectId getIdObat(){return idObat;}
+    public void setIdObat(ObjectId idObat){this.idObat = idObat;}
 
+    public String getNamaObat(){return namaObat;}
+    public void setNamaObat(String namaObat){this.namaObat = namaObat;}
+
+    public String getKekuatan(){return kekuatan;}
+    public void setKekuatan(String kekuatan){this.kekuatan = kekuatan;}
+
+    public int getJumlah(){return jumlah;}
+    public void setJumlah(int jumlah){ this.jumlah = jumlah;}
+
+    public String getSatuan(){return satuan;}
+    public void setSatuan(String satuan){this.satuan = satuan;}
+
+    public String getAturanPakai(){return aturanPakai;}
+    public void setAturanPakai(String aturanPakai){this.aturanPakai = aturanPakai;}
 }
