@@ -1,56 +1,93 @@
-package org.demo;
+package org.demo; // Buat package baru untuk layanan
 
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.codecs.configuration.CodecProvider;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider; // Ini penting!
-import org.bson.Document; // Tetap perlu untuk query
+import org.bson.Document;
+import org.bson.types.ObjectId;
+import org.demo.model.Dokter;
+import org.demo.model.Pasien;
 
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import java.util.Date;
 
-public class Handle { // Ubah nama kelas menjadi sesuatu yang lebih sesuai, misal DmcApp
-    public static void main(String[] args) {
-        String connectionString = "mongodb://localhost:27017"; // Atau URI MongoDB Atlas Anda
+public class Handle {
 
-        // --- Konfigurasi CodecRegistry untuk POJO Mapping ---
-        // 1. Buat PojoCodecProvider: Ini adalah bagian yang memberitahu driver bahwa kita ingin mapping otomatis
-        CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
+    private final MongoCollection<Pasien> pasienCollection;
+    private final MongoCollection<Dokter> dokterCollection;
+    private final MongoCollection<Document> rekamMedisCollection; // Untuk cek pasien lama/baru
 
-        // 2. Gabungkan dengan CodecRegistry default MongoDB
-        // Ini memastikan driver juga bisa menangani tipe dasar seperti String, Integer, ObjectId, dll.
-        CodecRegistry pojoCodecRegistry = fromRegistries(
-                MongoClientSettings.getDefaultCodecRegistry(),
-                fromProviders(pojoCodecProvider) // Tambahkan provider POJO kita
-        );
+    // Konstruktor untuk menginisialisasi koleksi-koleksi yang dibutuhkan
+    public Handle(MongoDatabase database) {
+        this.pasienCollection = database.getCollection("pasien", Pasien.class);
+        this.dokterCollection = database.getCollection("dokter", Dokter.class);
+        // Kita perlu RekamMedisCollection sebagai Document karena kita hanya butuh ID untuk cek keberadaan
+        this.rekamMedisCollection = database.getCollection("rekamMedis", Document.class);
+    }
 
-        MongoClient mongoClient = null;
-        try {
-            // 3. Bangun MongoClientSettings dengan CodecRegistry yang sudah dikonfigurasi
-            MongoClientSettings settings = MongoClientSettings.builder()
-                    .applyConnectionString(new com.mongodb.ConnectionString(connectionString))
-                    .codecRegistry(pojoCodecRegistry) // Daftarkan registry POJO di sini
-                    .build();
+    // --- Metode untuk Autentikasi dan Otorisasi ---
+    public UserAuthResult2 authenticateUser(String nomorIdentitas, String password) {
+        // Coba cari di koleksi Dokter
+        Dokter dokter = dokterCollection.find(new Document("nipPegawai", nomorIdentitas)).first();
+        if (dokter != null) {
+            // Dalam aplikasi nyata: gunakan BCrypt.checkpw(password, dokter.getPasswordHash())
+            if (password.equals(dokter.getPasswordHash())) { // Contoh sederhana, JANGAN DI PRODUKSI!
+                return new UserAuthResult2(nomorIdentitas, "Dokter", null, true);
+            }
+        }
 
-            // 4. Buat MongoClient menggunakan settings tersebut
-            mongoClient = MongoClients.create(settings);
+        // Coba cari di koleksi Pasien
+        Pasien pasien = pasienCollection.find(new Document("nomorIdentitas", nomorIdentitas)).first();
+        if (pasien != null) {
+            // Dalam aplikasi nyata: gunakan BCrypt.checkpw(password, pasien.getPasswordHash())
+            if (password.equals(pasien.getPasswordHash())) { // Contoh sederhana, JANGAN DI PRODUKSI!
+                String pasienStatus = getPasienStatus(pasien.getId());
+                return new UserAuthResult2(nomorIdentitas, "Pasien", pasienStatus, true);
+            }
+        }
 
-            MongoDatabase database = mongoClient.getDatabase("dmcUnidaDB"); // Nama database Anda
-            System.out.println("Berhasil terhubung ke database: " + database.getName());
+        // Jika tidak ditemukan atau password salah
+        return new UserAuthResult2(nomorIdentitas, null, null, false);
+    }
 
-            // ... Selanjutnya kita akan mulai menggunakan koleksi dengan POJO ...
+    // Metode untuk mengecek status pasien (Lama/Baru)
+    private String getPasienStatus(ObjectId pasienId) {
+        // Cari setidaknya satu rekam medis untuk pasien ini
+        Document rekamMedis = rekamMedisCollection.find(new Document("idPasien", pasienId)).first();
+        if (rekamMedis != null) {
+            return "Pasien Lama"; // Jika ada rekam medis, berarti sudah pernah berkunjung
+        } else {
+            return "Pasien Baru"; // Jika belum ada rekam medis
+        }
+    }
 
-        } catch (Exception e) {
-            System.err.println("Terjadi kesalahan saat koneksi atau operasi MongoDB: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            if (mongoClient != null) {
-                mongoClient.close();
-                System.out.println("Koneksi MongoDB ditutup.");
+    // --- Kelas Pembantu untuk Hasil Autentikasi ---
+    public static class UserAuthResult2 {
+        private String identifier; // NIM/NIDN/NIK
+        private String role;       // "Dokter" atau "Pasien"
+        private String pasienType; // "Pasien Lama" atau "Pasien Baru" (hanya jika role Pasien)
+        private boolean isAuthenticated;
+
+        public UserAuthResult2(String identifier, String role, String pasienType, boolean isAuthenticated) {
+            this.identifier = identifier;
+            this.role = role;
+            this.pasienType = pasienType;
+            this.isAuthenticated = isAuthenticated;
+        }
+
+        public String getIdentifier() { return identifier; }
+        public String getRole() { return role; }
+        public String getPasienType() { return pasienType; }
+        public boolean isAuthenticated() { return isAuthenticated; }
+
+        @Override
+        public String toString() {
+            if (isAuthenticated) {
+                if ("Pasien".equals(role)) {
+                    return "Autentikasi BERHASIL. User: " + identifier + ", Peran: " + role + ", Tipe Pasien: " + pasienType;
+                } else {
+                    return "Autentikasi BERHASIL. User: " + identifier + ", Peran: " + role;
+                }
+            } else {
+                return "Autentikasi GAGAL untuk user: " + identifier;
             }
         }
     }

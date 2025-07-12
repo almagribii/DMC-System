@@ -38,8 +38,6 @@ public class DmcApp {
             MongoDatabase database = mongoClient.getDatabase("DMC");
             System.out.println("Berhasil Terhubung ke database: " + database.getName());
 
-            MongoCollection<Pasien> pasienMongoCollection = database.getCollection("pasien", Pasien.class);
-            pasienMongoCollection.insertOne(new Pasien());
 
         } catch (Exception e){
             System.out.println("Terjadi kesalahan saat koneksi atau operasi MongoDB: " + e.getMessage());
