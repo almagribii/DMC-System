@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Pasien {
     private ObjectId id;
+    private String passwordHash;
     private String jenisIdentitas;
     private String nomorIdentitas;
     private String namaLengkap;
@@ -25,6 +26,7 @@ public class Pasien {
     }
 
     public Pasien(ObjectId id,
+                  String passwordHash,
                   String jenisIdentitas,
                   String nomorIdentitas,
                   String namaLengkap,
@@ -39,6 +41,7 @@ public class Pasien {
                   List riwayatPenyakitKronis,
                   String catatanTambahan) {
         this.id = id;
+        this.passwordHash = passwordHash;
         this.jenisIdentitas = jenisIdentitas;
         this.nomorIdentitas = nomorIdentitas;
         this.namaLengkap = namaLengkap;
@@ -56,6 +59,9 @@ public class Pasien {
 
     public ObjectId getId(){return id;};
     public void setId(ObjectId id){this.id = id;}
+
+    public String getPasswordHash(){return passwordHash;}
+    public void setPasswordHash(String passwordHash){this.passwordHash = passwordHash;}
 
     public String getJenisIdentitas(){return jenisIdentitas;}
     public void setJenisIdentitas(String jenisIdentitas){this.jenisIdentitas = jenisIdentitas;}
