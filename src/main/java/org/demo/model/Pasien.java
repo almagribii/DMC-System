@@ -56,4 +56,43 @@ public class Pasien {
 
     public ObjectId getId(){return id;};
     public void setId(ObjectId id){this.id = id;}
+
+    public String getJenisIdentitas(){return jenisIdentitas;}
+    public void setJenisIdentitas(String jenisIdentitas){this.jenisIdentitas = jenisIdentitas;}
+
+    public String getNomorIdentitas(){return nomorIdentitas;}
+    public void setNomorIdentitas(String nomorIdentitas){this.nomorIdentitas = nomorIdentitas;}
+
+    public String getNamaLengkap(){return namaLengkap;}
+    public void setNamaLengkap(String namaLengkap){this.namaLengkap = namaLengkap;}
+
+    public Date getTanggalLahir(){return tanggalLahir;}
+    public void setTanggalLahir(Date tanggalLahir){this.tanggalLahir = tanggalLahir;}
+
+    public String getJenisKelamin(){return jenisKelamin;}
+    public void setJenisKelamin(String jenisKelamin){this.jenisKelamin = jenisKelamin;}
+
+    public String getGolonganDarah(){return golonganDarah;}
+    public void setGolonganDarah(String golonganDarah){this.golonganDarah = golonganDarah;}
+
+    public Kontak getKontak(){return kontak;}
+    public void setKontak(Kontak kontak){this.kontak = kontak;}
+
+    public String getStatusCivitas(){return statusCivitas;}
+    public void setStatusCivitas(String statusCivitas){this.statusCivitas = statusCivitas;}
+
+    public ProdiInfo getProgramStudi(){return programStudi;}
+    public void setProgramStudi(ProdiInfo programStudi){this.programStudi = programStudi;}
+
+    public Date getTanggalDaftarDMC(){return tanggalDaftarDMC;}
+    public void setTanggalDaftarDMC(Date tanggalDaftarDMC){this.tanggalDaftarDMC = tanggalDaftarDMC;}
+
+    public List<String> getRiwayatAlergi(){return riwayatAlergi;}
+    public void setRiwayatAlergi(List<String> riwayatAlergi){this.riwayatAlergi = riwayatAlergi;}
+
+    public List<String> getRiwayatPenyakitKronis(){return riwayatPenyakitKronis;}
+    public void setRiwayatPenyakitKronis(List<String> riwayatPenyakitKronis){this.riwayatPenyakitKronis = riwayatPenyakitKronis;}
+
+    public String getCatatanTambahan(){return catatanTambahan;}
+    public void setCatatanTambahan(String catatanTambahan){this.catatanTambahan =  catatanTambahan;}
 }
