@@ -3,10 +3,12 @@ package org.demo;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.demo.model.Pasien;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -35,6 +37,9 @@ public class DmcApp {
 
             MongoDatabase database = mongoClient.getDatabase("DMC");
             System.out.println("Berhasil Terhubung ke database: " + database.getName());
+
+            MongoCollection<Pasien> pasienMongoCollection = database.getCollection("pasien", Pasien.class);
+            pasienMongoCollection.insertOne(new Pasien());
 
         } catch (Exception e){
             System.out.println("Terjadi kesalahan saat koneksi atau operasi MongoDB: " + e.getMessage());
