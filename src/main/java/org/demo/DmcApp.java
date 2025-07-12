@@ -35,6 +35,15 @@ public class DmcApp {
 
             MongoDatabase database = mongoClient.getDatabase("DMC");
             System.out.println("Berhasil Terhubung ke database: " + database.getName());
+
+        } catch (Exception e){
+            System.out.println("Terjadi kesalahan saat koneksi atau operasi MongoDB: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (mongoClient != null){
+                mongoClient.close();
+                System.out.println("Koneksi MongoDb ditutup");
+            }
         }
     }
 }
