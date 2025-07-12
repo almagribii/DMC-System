@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 
 public class Dokter {
     private ObjectId id;
+    private String passwordHash;
     private String nipPegawai;
     private String namaLengkap;
     private String spesialisasi;
@@ -13,6 +14,7 @@ public class Dokter {
 
     public Dokter () {}
     public Dokter(ObjectId id,
+                  String passwordHash,
                   String nipPegawai,
                   String namaLengkap,
                   String spesialisasi,
@@ -21,6 +23,7 @@ public class Dokter {
                   boolean statusAktif
     ){
         this.id = id;
+        this.passwordHash = passwordHash;
         this.nipPegawai = nipPegawai;
         this.namaLengkap = namaLengkap;
         this.spesialisasi = spesialisasi;
@@ -31,6 +34,9 @@ public class Dokter {
 
     public ObjectId getId () {return id;}
     public void setId (ObjectId id) {this.id = id; }
+
+    public String getPasswordHash(){return passwordHash;}
+    public void setPasswordHash(String passwordHash){this.passwordHash = passwordHash;}
 
     public String getNipPegawai(){return nipPegawai;}
     public void setNipPegawai(String nipPegawai){this.nipPegawai = nipPegawai;}
