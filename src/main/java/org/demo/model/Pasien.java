@@ -1,12 +1,16 @@
 package org.demo.model;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
 
+@Document(collation = "pasien")
 public class Pasien {
-    private ObjectId id;
+    @Id
+    private String  id;
     private String passwordHash;
     private String jenisIdentitas;
     private String nomorIdentitas;
@@ -27,7 +31,7 @@ public class Pasien {
     }
 
     // Konstruktor dengan semua atribut
-    public Pasien(ObjectId id,
+    public Pasien(String  id,
                   String passwordHash,
                   String jenisIdentitas,
                   String nomorIdentitas,
@@ -60,7 +64,7 @@ public class Pasien {
     }
 
     // --- GETTERS ---
-    public ObjectId getId(){return id;}
+    public String  getId(){return id;}
     public String getPasswordHash(){return passwordHash;}
     public String getJenisIdentitas(){return jenisIdentitas;}
     public String getNomorIdentitas(){return nomorIdentitas;}
@@ -77,7 +81,7 @@ public class Pasien {
     public String getCatatanTambahan(){return catatanTambahan;}
 
     // --- SETTERS ---
-    public void setId(ObjectId id){this.id = id;}
+    public void setId(String  id){this.id = id;}
     public void setPasswordHash(String passwordHash){this.passwordHash = passwordHash;}
     public void setJenisIdentitas(String jenisIdentitas){this.jenisIdentitas = jenisIdentitas;}
     public void setNomorIdentitas(String nomorIdentitas){this.nomorIdentitas = nomorIdentitas;}

@@ -1,4 +1,7 @@
 package org.demo.repository;
 
-interface RepositoryRekamMedis {
+import org.demo.model.RekamMedis;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+interface RepositoryRekamMedis extends MongoRepository<RekamMedis, String> {
 }

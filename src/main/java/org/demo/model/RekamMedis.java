@@ -1,12 +1,15 @@
 package org.demo.model;
 
-import org.bson.types.ObjectId;
+
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 import java.util.List;
 
 public class RekamMedis {
-    private ObjectId id;
-    private ObjectId idPasien; // Reference to Pasien
+    @Id
+    private String id;
+    private String idPasien; // Reference to Pasien
     private String nomorIdentitasPasien; // Denormalized
     private String namaPasien;           // Denormalized
     private Date tanggalKunjungan;
@@ -18,7 +21,7 @@ public class RekamMedis {
     private List<TindakanMedis> tindakanMedis; // Array of Embedded Documents
     private List<ResepObat> resepObat;         // Array of Embedded Documents
     private String catatanDokter;
-    private ObjectId idDokterPenanggungJawab; // Reference to Dokter
+    private String idDokterPenanggungJawab; // Reference to Dokter
     private String namaDokterPenanggungJawab; // Denormalized
     private String statusKunjungan;
     private Date tanggalBerikutnya;
@@ -28,7 +31,7 @@ public class RekamMedis {
     // (Generate these in your IDE for all fields)
     public RekamMedis() {}
 
-    public RekamMedis(ObjectId idPasien, String nomorIdentitasPasien, String namaPasien, Date tanggalKunjungan, String jenisKunjungan, String keluhanUtama, String anamnesa, PemeriksaanFisik pemeriksaanFisik, List<Diagnosis> diagnosis, List<TindakanMedis> tindakanMedis, List<ResepObat> resepObat, String catatanDokter, ObjectId idDokterPenanggungJawab, String namaDokterPenanggungJawab, String statusKunjungan, Date tanggalBerikutnya, List<LampiranFile> fileLampiran) {
+    public RekamMedis(String idPasien, String nomorIdentitasPasien, String namaPasien, Date tanggalKunjungan, String jenisKunjungan, String keluhanUtama, String anamnesa, PemeriksaanFisik pemeriksaanFisik, List<Diagnosis> diagnosis, List<TindakanMedis> tindakanMedis, List<ResepObat> resepObat, String catatanDokter, String idDokterPenanggungJawab, String namaDokterPenanggungJawab, String statusKunjungan, Date tanggalBerikutnya, List<LampiranFile> fileLampiran) {
         this.idPasien = idPasien;
         this.nomorIdentitasPasien = nomorIdentitasPasien;
         this.namaPasien = namaPasien;
@@ -48,10 +51,10 @@ public class RekamMedis {
         this.fileLampiran = fileLampiran;
     }
 
-    public ObjectId getId() { return id; }
-    public void setId(ObjectId id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
     // ... all other getters and setters
-    public ObjectId getIdPasien() { return idPasien; }
-    public void setIdPasien(ObjectId idPasien) { this.idPasien = idPasien; }
+    public String getIdPasien() { return idPasien; }
+    public void setIdPasien(String idPasien) { this.idPasien = idPasien; }
     // ...
 }

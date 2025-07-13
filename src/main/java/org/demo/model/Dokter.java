@@ -1,9 +1,11 @@
 package org.demo.model;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 
 public class Dokter {
-    private ObjectId id;
+    @Id
+    private String  id;
     private String passwordHash;
     private String nipPegawai;
     private String namaLengkap;
@@ -13,7 +15,7 @@ public class Dokter {
     private boolean statusAktif;
 
     public Dokter () {}
-    public Dokter(ObjectId id,
+    public Dokter(String  id,
                   String passwordHash,
                   String nipPegawai,
                   String namaLengkap,
@@ -32,8 +34,8 @@ public class Dokter {
         this.statusAktif = statusAktif;
     }
 
-    public ObjectId getId () {return id;}
-    public void setId (ObjectId id) {this.id = id; }
+    public String getId () {return id;}
+    public void setId (String  id) {this.id = id; }
 
     public String getPasswordHash(){return passwordHash;}
     public void setPasswordHash(String passwordHash){this.passwordHash = passwordHash;}

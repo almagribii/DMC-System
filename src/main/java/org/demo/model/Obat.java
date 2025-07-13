@@ -1,12 +1,12 @@
 package org.demo.model;
-
-import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
 
 public class Obat {
-    private ObjectId id;
+    @Id
+    private String id;
     private String namaObat;
     private String namaMerek;
     private String bentukSediaan;
@@ -24,7 +24,7 @@ public class Obat {
 
     public Obat () {}
 
-    public Obat (ObjectId id,
+    public Obat (String id,
                  String namaObat,
                  String namaMerek,
                  String bentukSediaan,
@@ -55,7 +55,7 @@ public class Obat {
         this.jumlahPerKemasan = jumlahPerKemasan;
         this.stokTersedia = stokTersedia;
     }
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
@@ -117,7 +117,7 @@ public class Obat {
 
 
     // --- SETTERS ---
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

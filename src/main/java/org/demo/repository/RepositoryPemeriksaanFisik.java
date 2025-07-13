@@ -1,4 +1,7 @@
 package org.demo.repository;
 
-interface RepositoryPemeriksaanFisik {
+import org.demo.model.PemeriksaanFisik;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+interface RepositoryPemeriksaanFisik extends MongoRepository<PemeriksaanFisik, String> {
 }

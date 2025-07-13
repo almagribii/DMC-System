@@ -1,4 +1,8 @@
 package org.demo.repository;
 
-public interface RepositoryDokter {
+import org.demo.model.Dokter;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface RepositoryDokter extends MongoRepository<Dokter, String> {
+    
 }

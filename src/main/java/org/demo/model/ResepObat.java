@@ -1,9 +1,11 @@
 package org.demo.model;
 
-import org.bson.types.ObjectId;
+
+import org.springframework.data.annotation.Id;
 
 public class ResepObat {
-    private ObjectId idObat;
+    @Id
+    private String idObat;
     private String namaObat;
     private String kekuatan;
     private int jumlah;
@@ -13,7 +15,7 @@ public class ResepObat {
     public ResepObat() {
     }
 
-    public ResepObat(ObjectId idObat,
+    public ResepObat(String idObat,
                      String namaObat,
                      String kekuatan,
                      int jumlah,
@@ -26,8 +28,8 @@ public class ResepObat {
         this.satuan = satuan;
         this.aturanPakai = aturanPakai;
     }
-    public ObjectId getIdObat(){return idObat;}
-    public void setIdObat(ObjectId idObat){this.idObat = idObat;}
+    public String getIdObat(){return idObat;}
+    public void setIdObat(String idObat){this.idObat = idObat;}
 
     public String getNamaObat(){return namaObat;}
     public void setNamaObat(String namaObat){this.namaObat = namaObat;}
