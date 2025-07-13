@@ -9,46 +9,53 @@ import org.bson.types.ObjectId;
 import org.demo.model.Dokter;
 import org.demo.model.Pasien;
 import org.demo.model.RekamMedis;
+import org.demo.repository.RepositoryDokter;
+import org.demo.repository.RepositoryPasien;
+import org.demo.repository.RepositoryRekamMedis;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@Service
 public class AuthService {
-    private final MongoCollection<Pasien> pasienMongoCollection;
-    private final MongoCollection<Dokter> dokterMongoCollection;
-    private final MongoCollection<RekamMedis> rekamMedisMongoCollection;
+    private final RepositoryPasien repositoryPasien;
+    private final RepositoryDokter repositoryDokter;
+    private final RepositoryRekamMedis repositoryRekamMedis;
 
-    public AuthService(MongoDatabase database){
-        this.pasienMongoCollection = database.getCollection("pasien", Pasien.class);
-        this.dokterMongoCollection = database.getCollection("dokter", Dokter.class);
-        this.rekamMedisMongoCollection = database.getCollection("rekamMedis", RekamMedis.class);
+
+    public AuthService(RepositoryPasien repositoryPasien, RepositoryDokter repositoryDokter, RepositoryRekamMedis repositoryRekamMedis){
+        this.repositoryPasien = repositoryPasien;
+        this.repositoryDokter = repositoryDokter;
+        this.repositoryRekamMedis = repositoryRekamMedis;
     }
 
-    public UserAuthResult autheticationUser(String nomorIdentitas, String password){
-        Dokter dokter = dokterMongoCollection.find(new Document("nipPegawai", nomorIdentitas)).first();
+    public UserAuthResult authenticateUser(String identifier, String password){
+        Dokter dokter = repositoryDokter.findByNipPegawai(identifier);
         if (dokter != null){
             if (password.equals(dokter.getPasswordHash())) {
-                return new UserAuthResult(nomorIdentitas, "Dokter", null, true);
+                return new UserAuthResult(identifier, "Dokter", null, true);
             }
         }
 
-        Pasien pasien = pasienMongoCollection.find(new Document("nomorIdentitas", nomorIdentitas)).first();
+        Pasien pasien = repositoryPasien.findByNomorIdentitas(identifier);
         if (pasien != null){
             if (password.equals(pasien.getPasswordHash())) {
                 String pasienStatus = getPasienStatus(pasien.getId());
-                return new UserAuthResult(nomorIdentitas, "Pasien",pasienStatus, true);
+                return new UserAuthResult(identifier, "Pasien",pasienStatus, true);
             }
         }
-        return new UserAuthResult(nomorIdentitas, null, null, false);
+        return new UserAuthResult(identifier, null, null, false);
     }
 
-    private String getPasienStatus(ObjectId pasienId){
-        RekamMedis rekamMedis = rekamMedisMongoCollection.find(new Document("idPasien", pasienId)).first();
-        if (rekamMedis != null) {
+    private String getPasienStatus(String pasienId){
+
+        long count = repositoryRekamMedis.countByIdPasien(pasienId);
+        if (count > 0) {
             return "Pasien Lama";
         } else {
             return "Pasien Baru";
         }
-    };
+    }
 
     public static class UserAuthResult {
         private String identifier;
