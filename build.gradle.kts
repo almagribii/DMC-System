@@ -6,6 +6,7 @@ plugins {
 application{
     mainClass = "org.demo.DmcApp"
 }
+
 group = "org.demo"
 version = "1.0-SNAPSHOT"
 
