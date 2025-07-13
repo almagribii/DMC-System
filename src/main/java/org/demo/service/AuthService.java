@@ -5,10 +5,12 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import org.bson.types.ObjectId;
-import org.demo.Handle;
+
 import org.demo.model.Dokter;
 import org.demo.model.Pasien;
 import org.demo.model.RekamMedis;
+
+import java.util.Objects;
 
 public class AuthService {
     private final MongoCollection<Pasien> pasienMongoCollection;
@@ -69,6 +71,27 @@ public class AuthService {
 
         public String getPasienType(){return pasienType;}
         public void setPasienType(String pasienType){this.pasienType = pasienType;}
+
+        public boolean isAuthenticated() {
+            return isAuthenticated;
+        }
+
+        public void setAuthenticated(boolean isAuthenticated){
+            this.isAuthenticated = isAuthenticated;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            UserAuthResult that = (UserAuthResult) o;
+            return isAuthenticated == that.isAuthenticated && Objects.equals(identifier, that.identifier) && Objects.equals(role, that.role) && Objects.equals(pasienType, that.pasienType);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(identifier, role, pasienType, isAuthenticated);
+        }
 
         @Override
         public String toString(){

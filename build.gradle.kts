@@ -1,7 +1,11 @@
 plugins {
     id("java")
+    id("application")
 }
 
+application{
+    mainClass = "org.demo.DmcApp"
+}
 group = "org.demo"
 version = "1.0-SNAPSHOT"
 

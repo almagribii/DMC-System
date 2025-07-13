@@ -23,8 +23,10 @@ public class Pasien {
     private String catatanTambahan;
 
     public Pasien() {
+        // Konstruktor default tanpa argumen (penting untuk POJO mapping)
     }
 
+    // Konstruktor dengan semua atribut
     public Pasien(ObjectId id,
                   String passwordHash,
                   String jenisIdentitas,
@@ -37,8 +39,8 @@ public class Pasien {
                   String statusCivitas,
                   ProdiInfo programStudi,
                   Date tanggalDaftarDMC,
-                  List riwayatAlergi,
-                  List riwayatPenyakitKronis,
+                  List<String> riwayatAlergi,       // <--- PERBAIKAN: Tambahkan <String> di sini
+                  List<String> riwayatPenyakitKronis, // <--- PERBAIKAN: Tambahkan <String> di sini
                   String catatanTambahan) {
         this.id = id;
         this.passwordHash = passwordHash;
@@ -57,48 +59,58 @@ public class Pasien {
         this.catatanTambahan = catatanTambahan;
     }
 
-    public ObjectId getId(){return id;};
-    public void setId(ObjectId id){this.id = id;}
-
+    // --- GETTERS ---
+    public ObjectId getId(){return id;}
     public String getPasswordHash(){return passwordHash;}
-    public void setPasswordHash(String passwordHash){this.passwordHash = passwordHash;}
-
     public String getJenisIdentitas(){return jenisIdentitas;}
-    public void setJenisIdentitas(String jenisIdentitas){this.jenisIdentitas = jenisIdentitas;}
-
     public String getNomorIdentitas(){return nomorIdentitas;}
-    public void setNomorIdentitas(String nomorIdentitas){this.nomorIdentitas = nomorIdentitas;}
-
     public String getNamaLengkap(){return namaLengkap;}
-    public void setNamaLengkap(String namaLengkap){this.namaLengkap = namaLengkap;}
-
     public Date getTanggalLahir(){return tanggalLahir;}
-    public void setTanggalLahir(Date tanggalLahir){this.tanggalLahir = tanggalLahir;}
-
     public String getJenisKelamin(){return jenisKelamin;}
-    public void setJenisKelamin(String jenisKelamin){this.jenisKelamin = jenisKelamin;}
-
     public String getGolonganDarah(){return golonganDarah;}
-    public void setGolonganDarah(String golonganDarah){this.golonganDarah = golonganDarah;}
-
     public Kontak getKontak(){return kontak;}
-    public void setKontak(Kontak kontak){this.kontak = kontak;}
-
     public String getStatusCivitas(){return statusCivitas;}
-    public void setStatusCivitas(String statusCivitas){this.statusCivitas = statusCivitas;}
-
     public ProdiInfo getProgramStudi(){return programStudi;}
-    public void setProgramStudi(ProdiInfo programStudi){this.programStudi = programStudi;}
-
     public Date getTanggalDaftarDMC(){return tanggalDaftarDMC;}
-    public void setTanggalDaftarDMC(Date tanggalDaftarDMC){this.tanggalDaftarDMC = tanggalDaftarDMC;}
-
     public List<String> getRiwayatAlergi(){return riwayatAlergi;}
-    public void setRiwayatAlergi(List<String> riwayatAlergi){this.riwayatAlergi = riwayatAlergi;}
-
     public List<String> getRiwayatPenyakitKronis(){return riwayatPenyakitKronis;}
-    public void setRiwayatPenyakitKronis(List<String> riwayatPenyakitKronis){this.riwayatPenyakitKronis = riwayatPenyakitKronis;}
-
     public String getCatatanTambahan(){return catatanTambahan;}
+
+    // --- SETTERS ---
+    public void setId(ObjectId id){this.id = id;}
+    public void setPasswordHash(String passwordHash){this.passwordHash = passwordHash;}
+    public void setJenisIdentitas(String jenisIdentitas){this.jenisIdentitas = jenisIdentitas;}
+    public void setNomorIdentitas(String nomorIdentitas){this.nomorIdentitas = nomorIdentitas;}
+    public void setNamaLengkap(String namaLengkap){this.namaLengkap = namaLengkap;}
+    public void setTanggalLahir(Date tanggalLahir){this.tanggalLahir = tanggalLahir;}
+    public void setJenisKelamin(String jenisKelamin){this.jenisKelamin = jenisKelamin;}
+    public void setGolonganDarah(String golonganDarah){this.golonganDarah = golonganDarah;}
+    public void setKontak(Kontak kontak){this.kontak = kontak;}
+    public void setStatusCivitas(String statusCivitas){this.statusCivitas = statusCivitas;}
+    public void setProgramStudi(ProdiInfo programStudi){this.programStudi = programStudi;}
+    public void setTanggalDaftarDMC(Date tanggalDaftarDMC){this.tanggalDaftarDMC = tanggalDaftarDMC;}
+    public void setRiwayatAlergi(List<String> riwayatAlergi){this.riwayatAlergi = riwayatAlergi;}
+    public void setRiwayatPenyakitKronis(List<String> riwayatPenyakitKronis){this.riwayatPenyakitKronis = riwayatPenyakitKronis;}
     public void setCatatanTambahan(String catatanTambahan){this.catatanTambahan =  catatanTambahan;}
+
+    @Override
+    public String toString() {
+        return "Pasien{" +
+                "id=" + id +
+                ", passwordHash='" + "[PROTECTED]" + '\'' + // Jangan tampilkan password di toString
+                ", jenisIdentitas='" + jenisIdentitas + '\'' +
+                ", nomorIdentitas='" + nomorIdentitas + '\'' +
+                ", namaLengkap='" + namaLengkap + '\'' +
+                ", tanggalLahir=" + tanggalLahir +
+                ", jenisKelamin='" + jenisKelamin + '\'' +
+                ", golonganDarah='" + golonganDarah + '\'' +
+                ", kontak=" + kontak +
+                ", statusCivitas='" + statusCivitas + '\'' +
+                ", programStudi=" + programStudi +
+                ", tanggalDaftarDMC=" + tanggalDaftarDMC +
+                ", riwayatAlergi=" + riwayatAlergi +
+                ", riwayatPenyakitKronis=" + riwayatPenyakitKronis +
+                ", catatanTambahan='" + catatanTambahan + '\'' +
+                '}';
+    }
 }
