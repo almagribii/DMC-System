@@ -9,6 +9,7 @@ import java.util.List;
 
 //@Document(collation = "pasien")
 //ini ternyata asal error nya
+
 public class Pasien {
     @Id
     private String  id;

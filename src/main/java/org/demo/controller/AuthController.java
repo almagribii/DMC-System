@@ -1,13 +1,11 @@
 package org.demo.controller;
 
+import org.demo.model.Pasien;
 import org.demo.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity; // Untuk mengembalikan respons HTTP
-import org.springframework.web.bind.annotation.PostMapping; // Untuk anotasi POST method
-import org.springframework.web.bind.annotation.RequestBody; // Untuk membaca body request
-import org.springframework.web.bind.annotation.RequestMapping; // Untuk base URL
-import org.springframework.web.bind.annotation.RestController; // Untuk menandai kelas ini sebagai REST Controller
+import org.springframework.web.bind.annotation.*;
 
 // --- Kelas Pembantu untuk Menerima Request Login ---
 // Ini adalah POJO yang akan memetakan body JSON dari request POST ke /login
@@ -59,6 +57,19 @@ public class AuthController {
         } else {
             // Jika autentikasi gagal, kembalikan status HTTP 401 Unauthorized
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
+        }
+    }
+
+    @PostMapping("/register/pasien")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Pasien> registerPasien(@RequestBody Pasien newPasien){
+        try {
+            Pasien registerPasien = authService.registerNewPasien(newPasien);
+            return ResponseEntity.status(HttpStatus.CREATED).body(registerPasien);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
