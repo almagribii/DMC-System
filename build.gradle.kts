@@ -5,9 +5,9 @@ plugins {
     id("org.springframework.boot") version "3.4.3"
 }
 
-//application{
-//    mainClass = "org.demo.Main"
-//}
+application{
+    mainClass = "org.demo.Main"
+}
 
 group = "org.demo"
 version = "1.0-SNAPSHOT"

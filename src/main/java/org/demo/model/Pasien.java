@@ -7,7 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.List;
 
-@Document(collation = "pasien")
+//@Document(collation = "pasien")
+//ini ternyata asal error nya
 public class Pasien {
     @Id
     private String  id;

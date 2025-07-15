@@ -60,7 +60,7 @@
 //            // Inisialisasi Scanner hanya sekali dan jangan tutup System.in
 //            scanner = new Scanner(System.in);
 //
-//            AuthService authService = new AuthService(database);
+//            AuthService authService = new AuthService(connectionString);
 //            System.out.println("\n--- Melakukan Autentikasi Menggunakan AuthService ---"); // Perbaiki typo "Authentikasi"
 //
 //            System.out.println("\n--- Sistem Autentikasi DMC ---");
@@ -70,7 +70,7 @@
 //            System.out.print("Masukkan Password: "); // Gunakan print
 //            String password = scanner.nextLine();
 //
-//            AuthService.UserAuthResult result = authService.autheticationUser(username, password); // Perbaiki typo "autheticationUser"
+//            AuthService.UserAuthResult result = authService.authenticateUser(username, password); // Perbaiki typo "autheticationUser"
 //            System.out.println(result);
 //
 //            if (result.isAuthenticated()) {
@@ -108,7 +108,7 @@
 //
 //        // Menambahkan Pasien
 //        Pasien pasien1 = new Pasien(
-//                new ObjectId(),
+//                new String(),
 //                "passwordPasien",
 //                "NIM",
 //                "2023001",
@@ -118,7 +118,7 @@
 //                "A+",
 //                new Kontak("ahmad@email.com", "08123", "Asrama Mahasiswa"),
 //                "Mahasiswa",
-//                new ProdiInfo(new ObjectId(), "Teknik Informatika"),
+//                new ProdiInfo(new String(), "Teknik Informatika"),
 //                new Date(),
 //                List.of("Debu"),
 //                List.of("Asma"),
@@ -127,7 +127,7 @@
 //        pasienCollection.insertOne(pasien1);
 //
 //        Pasien pasien2 = new Pasien(
-//                new ObjectId(),
+//                new String(),
 //                "passwordPasien2", // Pastikan password berbeda untuk testing pasien baru
 //                "NIM",
 //                "2023002",
@@ -137,7 +137,7 @@
 //                "B+",
 //                new Kontak("budi@email.com", "08456", "Asrama Dosen"),
 //                "Mahasiswa",
-//                new ProdiInfo(new ObjectId(), "Pendidikan Bahasa Arab"),
+//                new ProdiInfo(new String(), "Pendidikan Bahasa Arab"),
 //                new Date(),
 //                List.of("Udang"),
 //                List.of(),
@@ -147,7 +147,7 @@
 //
 //        // Menambahkan Dokter
 //        Dokter dokter1 = new Dokter(
-//                new ObjectId(),
+//                new String(),
 //                "passwordDokter", // Pastikan passwordHash di posisi kedua
 //                "NIP001",
 //                "dr. Fulan", // Menggunakan nama konsisten
@@ -165,7 +165,7 @@
 //                new PemeriksaanFisik("120/80 mmHg", 38.5, "80 bpm", "18 bpm", 65, 170, "Konjungtiva anemis."),
 //                List.of(new Diagnosis("J06.9", "Infeksi Saluran Pernapasan Akut")),
 //                List.of(new TindakanMedis("Pemberian resep obat", "Edukasi pasien.")),
-//                List.of(new ResepObat(new ObjectId(), "Paracetamol", "500mg", 10, "Tablet", "3x1")),
+//                List.of(new ResepObat(new String(), "Paracetamol", "500mg", 10, "Tablet", "3x1")),
 //                "Catatan dokter RM1", dokter1.getId(), dokter1.getNamaLengkap(), "Selesai", null, null
 //        );
 //        rekamMedisCollection.insertOne(rm1);
@@ -173,5 +173,5 @@
 //        System.out.println("\nData awal untuk pengujian berhasil disiapkan.");
 //    }
 //}
-
-//-----------------Auth Ketika masih manual menggunakan collection--------------------------------------------------
+//
+////-----------------Auth Ketika masih manual menggunakan collection--------------------------------------------------
