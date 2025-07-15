@@ -1,5 +1,6 @@
 package org.demo.controller;
 
+import org.demo.model.Dokter;
 import org.demo.model.Pasien;
 import org.demo.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,19 @@ public class AuthController {
         try {
             Pasien registerPasien = authService.registerNewPasien(newPasien);
             return ResponseEntity.status(HttpStatus.CREATED).body(registerPasien);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/register/dokter")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Dokter> registerDokter(@RequestBody Dokter newDokter){
+        try {
+            Dokter registerDokter = authService.registerNewDokter(newDokter);
+            return ResponseEntity.status(HttpStatus.CREATED).body(registerDokter);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (Exception e){

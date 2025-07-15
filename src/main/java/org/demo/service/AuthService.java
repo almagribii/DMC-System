@@ -67,6 +67,16 @@ public class AuthService {
         return repositoryPasien.save(newPasien);
     }
 
+    public Dokter registerNewDokter(Dokter newDokter) {
+        Dokter existingDokter = repositoryDokter.findByNipPegawai(newDokter.getNomorSIP());
+        if (existingDokter != null) {
+            throw new IllegalArgumentException("Nomor Identitas Sudah Terdaftar.");
+
+        }
+
+        return repositoryDokter.save(newDokter);
+    }
+
     public static class UserAuthResult {
         private String identifier;
         private String role;
